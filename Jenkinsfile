@@ -1,6 +1,9 @@
 
 pipeline {
     agent any
+    environment{
+        MY_FILE = fileExists '/usr/local/kafka.postman_collection.json'
+    }
     stages {
         stage('Build') {
             steps {
@@ -9,11 +12,12 @@ pipeline {
                     echo "Multiline shell steps works too"
                     ls -lah
                 '''
-                if (fileExists('kafka.postman_collection')) {
-                 echo 'Yes'
-                } else {
-                  echo 'No'
-}
+            }
+        }
+        stage('conditional if exists'){
+            when { expression { MY_FILE == 'true' } }
+            steps {
+                echo "file exists"
             }
         }
     }

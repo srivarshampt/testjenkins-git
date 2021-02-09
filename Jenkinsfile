@@ -18,7 +18,7 @@ pipeline {
         stage('conditional if exists'){
             when { expression { MY_FILE == 'true' } }
             steps {
-                echo "file exists"kafka.postman_collection1.json"
+               sh 'echo "file exists"kafka.postman_collection1.json"'
             }
         }
          stage('deploy test'){

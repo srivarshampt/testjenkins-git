@@ -25,7 +25,7 @@ pipeline {
              steps {
                   sh 'cp kafka.postman_collection.json /usr/local'
                   sh 'cd /usr/local'
-                  sh 'newman run /usr/local/kafka.postman_collection.json -k --ssl-client-cert /opt/kafka/security/kafkarestc_client.cer --ssl-client-key /opt/kafka/security/kafkarestc_client-key.pem'       
+                  sh 'newman run kafka.postman_collection.json -k --ssl-client-cert /opt/kafka/security/kafkarestc_client.cer --ssl-client-key /opt/kafka/security/kafkarestc_client-key.pem'       
                   }
                 }
 

@@ -2,7 +2,7 @@
 pipeline {
     agent any
     environment{
-        MY_FILE = fileExists '/usr/local/kafka.postman_collection.json'
+        MY_FILE = fileExists '/usr/local/kafka.postman_collection1.json'
     }
     stages {
         stage('Build') {

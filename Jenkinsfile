@@ -28,8 +28,7 @@ pipeline {
                   sh 'newman run /usr/local/kafka.postman_collection.json -k --ssl-client-cert /opt/kafka/security/kafkarestc_client.cer --ssl-client-key /opt/kafka/security/kafkarestc_client-key.pem'       
                   }
                 }
-
-    }
+           }
     post {
         always {
             echo 'Test run completed'

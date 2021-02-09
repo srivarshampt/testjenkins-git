@@ -14,11 +14,23 @@ pipeline {
                 '''
             }
         }
+        boolean testPassed = false
         stage('conditional if exists'){
             when { expression { MY_FILE == 'true' } }
             steps {
                 echo "file exists"
+                testPassed = true
             }
         }
+         stage('deploy'){
+            steps {
+                if(testPassed){
+                   cp  kafka.postman_collection.json /usr/local
+                   newman run /usr/local/kafka.postman_collection.json -k --ssl-client-cert /opt/kafka/security/kafkarestc_client.cer --ssl-client-key /opt/kafka/security/kafkarestc_client-key.pem
+ 
+              }
+            }
+        }
+
     }
 }

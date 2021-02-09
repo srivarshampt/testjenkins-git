@@ -18,19 +18,15 @@ pipeline {
         stage('conditional if exists'){
             when { expression { MY_FILE == 'true' } }
             steps {
-                echo "file exists"
+                echo "file exists"kafka.postman_collection.json
             }
         }
          stage('deploy test'){
-            steps {
-                  def newName = 'kafka.postman_collection.json'
-                def out='/usr/local'
-                  sh 'cp ' + newName + ' ' +out  
-                  sh 'newman run /usr/local/kafka.postman_collection.json -k --ssl-client-cert /opt/kafka/security/kafkarestc_client.cer --ssl-client-key /opt/kafka/security/kafkarestc_client-key.pem'
- 
-           
-            }
-        }
+             steps {
+                  sh 'cp kafka.postman_collection.json /usr/local'
+                  sh 'newman run /usr/local/kafka.postman_collection.json -k --ssl-client-cert /opt/kafka/security/kafkarestc_client.cer --ssl-client-key /opt/kafka/security/kafkarestc_client-key.pem'       
+                  }
+                }
 
     }
 }

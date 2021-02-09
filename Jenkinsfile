@@ -29,4 +29,19 @@ pipeline {
                 }
 
     }
+    post {
+        always {
+            echo 'Test run completed'
+            cucumber buildStatus: 'UNSTABLE', failedFeaturesNumber: 999, failedScenariosNumber: 999, failedStepsNumber: 3, fileIncludePattern: '**/*.json', skippedStepsNumber: 999
+        }
+        success {
+            echo 'Successfully!'
+        }
+        failure {
+            echo 'Failed!'
+        }
+        unstable {
+            echo 'This will run only if the run was marked as unstable'
+        }
+    }
 }

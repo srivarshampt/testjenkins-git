@@ -16,6 +16,7 @@ pipeline {
         }
        
         stage('conditional if exists'){
+            input message: "Shall we build more?"
             when { expression { MY_FILE == 'true' } }
             steps {
                echo "file exists kafka.postman_collection1.json"
